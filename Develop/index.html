@@ -22,39 +22,55 @@
             <span class="navbar mb-0 h1">Weather Dashboard</span>
         </nav>
 
-        <div class="container" id="body-container">
+        <div class="container" id="containerBody">
 
             <div class="row">
 
-                <div class="col-sm-3 card" id+"search-sidebar"><h5 class="card-title">Search Bar</h5>
-                    <form class ="form-inline" id="search-history">
-
+                <div class="col-sm-4 card" id+"search-sidebar"><h5 class="cardTitle">Search Bar</h5>
+                    <form class ="form-inline" id="searchHistory">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search Here." aria-label="Search" id=searchInput></input>
+                        <button class ="btn btn-outline-info my-sm-0" type ="button" id="searchButton">Go</button>
                     </form>
+
                     <div class ="row">
                         <aside class="col-sm-12 card"> 
-                            <ul>
-                                <li>Austin</li>
-                                <li>Chicago</li>
-                                <li>New York</li>
-                                <li>Orlando</li>
-                                <li>San Fransisco</li>
-                                <li>Seattle</li>
-                                <li>Denver</li>
-                                <li>Atlanta</li>
-                                <!--Dynamically generate this list-->
+                            <ul class=list-group" id="searchList">
+                              <!--  <li class="list-group-item">Austin</li>
+                                <li class="list-group-item">Chicago</li>
+                                <li class="list-group-item">New York</li>
+                                <li class="list-group-item">Orlando</li>
+                                <li class="list-group-item">San Fransisco</li>
+                                <li class="list-group-item">Seattle</li>
+                                <li class="list-group-item">Denver</li>
+                                <li class="list-group-item">Atlanta</li> 
+                                Dynamically generate this list -->    
                             </ul>
                         </aside>
-
                     </div>
                 </div>
 
-                <div class="col-sm-9 card">Details about the city
+                <div class="col-sm-8 card " id="cityDash">
+                        <div class="card mt-2" id="currentWeather">
+                            <div class= "row card-body col-sm-12" id="header-row">
+                                <p>Search for a city to view weather data.</p>
+                                <h4 id="headerText"></h4>
+                                <!-- jQ: <img> Current weather's icon  -->
+                            </div>
+                                <div id="weatherData">
+                                <!-- jQ: <p> Current temperature</p> -->
+                                <!-- jQ: <p> Current humidity</p> -->
+                                <!-- jQ: <p> Current wind speed</p></p> -->
+                                <!-- jQ: <span> "UV Index:" -->
+                                <!-- jQ: <span> value of the UV index -->
+                                </div> 
+                        </div>
+
 
                     <div class ="row">
-                        <div class="col-sm-12"><h4 id ="forecast-title">5-day Forecast:</h4></div>
+                        <div class="col-sm-12"><h4 id ="forecastTitle">5-day Forecast:</h4></div>
                     </div>
                     <div class ="row">
-                        <div class="col-sm-12" id = "forecast-row">
+                        <div class="col-sm-12" id = "forecastRow">
                             <!-- <div class = "card forecast card-body"
                             <h5>tomorrow</h5>
                             <hr />
@@ -64,7 +80,6 @@
                             </div>-->
                         </div>
                     </div>
-
                 </div>
             </div>
 
