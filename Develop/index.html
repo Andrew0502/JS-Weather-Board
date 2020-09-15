@@ -17,6 +17,71 @@
         <link rel="stylesheet" href="./../Assets/style.css">
     </head>
     <body>
+
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar mb-0 h1">Weather Dashboard</span>
+        </nav>
+
+        <div class="container" id="body-container">
+
+            <div class="row">
+
+                <div class="col-sm-3 card" id+"search-sidebar"><h5 class="card-title">Search Bar</h5>
+                    <form class ="form-inline" id="search-history">
+
+                    </form>
+                    <div class ="row">
+                        <aside class="col-sm-12 card"> 
+                            <ul>
+                                <li>Austin</li>
+                                <li>Chicago</li>
+                                <li>New York</li>
+                                <li>Orlando</li>
+                                <li>San Fransisco</li>
+                                <li>Seattle</li>
+                                <li>Denver</li>
+                                <li>Atlanta</li>
+                                <!--Dynamically generate this list-->
+                            </ul>
+                        </aside>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-9 card">Details about the city
+
+                    <div class ="row">
+                        <div class="col-sm-12"><h4 id ="forecast-title">5-day Forecast:</h4></div>
+                    </div>
+                    <div class ="row">
+                        <div class="col-sm-12" id = "forecast-row">
+                            <!-- <div class = "card forecast card-body"
+                            <h5>tomorrow</h5>
+                            <hr />
+                            <p>icon</p>
+                            <p>temperature</p>
+                             <p>Humidity</p>
+                            </div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- <div class="row">
+                <aside class="col-sm-2 card">A city</aside>
+                <div class="col-sm-18">5 day forecast</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 card">another city</div>
+                <div class="col-sm-10">forecast cards</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 card">another city</div>
+            </div> -->
+        </div>
+
         
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
