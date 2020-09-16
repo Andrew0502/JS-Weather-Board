@@ -11,3 +11,95 @@ aside {
     font-style: italic;
     background-color: lightgray;
   }
+
+  nav span {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 30pt !important;
+  }
+  #searchSidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+  }
+  
+  #searchHistory {
+    margin-bottom: 15px;
+  }
+  
+  .search-term {
+    color: #343a40;
+  }
+  
+  #listContainer {
+    max-height: 70vh;
+    overflow: auto;
+  }
+  
+  .listGroupItem:hover {
+    /* color: red; */
+    background-color: rgb(228, 230, 233);
+    cursor: pointer;
+  }
+  
+  .search-term:hover {
+    color: #0069da;
+    text-decoration: none;
+  }
+  
+  #current-city-name {
+    margin: 0px;
+  }
+  
+  #currentWeather {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  h4 {
+    padding-left: 20px;
+    z-index: 2;
+  }
+  
+  #current-weather-icon {
+    border: 2px dashed lightblue;
+    padding: 30px;
+    border-radius: 100px;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 70px;
+    right: 5vw;
+    /* z-index: -1; */
+  }
+  
+  .uv {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .uv-low {
+    background-color: #9cc601;
+  }
+  
+  .uv-med {
+    background-color: #f9bc01;
+  }
+  
+  .uv-high {
+    background-color: #f89003;
+  }
+  
+  .uv-very-high {
+    background-color: #f54f24;
+  }
+  
+  .uv-extreme {
+    background-color: #9e47cc;
+  }
+  
+  .forecast {
+    background-color: #3698dd;
+    margin: 3px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 12px 1px rgba(20, 69, 102, 1);
+    color: white;
+  }

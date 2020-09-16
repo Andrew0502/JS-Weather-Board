@@ -26,23 +26,24 @@
 
             <div class="row">
 
-                <div class="col-sm-4 card" id+"search-sidebar"><h5 class="cardTitle">Search Bar</h5>
+                <div class="col-sm-4 card" id="searchSidebar"><h5 class="cardTitle">Search Bar</h5>
                     <form class ="form-inline" id="searchHistory">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search Here." aria-label="Search" id=searchInput></input>
                         <button class ="btn btn-outline-info my-sm-0" type ="button" id="searchButton">Go</button>
+                        <button type="button" class="btn btn-secondary" id="clearButton">Clear history</button>
                     </form>
 
-                    <div class ="row">
+                    <div class ="row" id="listContainer">
                         <aside class="col-sm-12 card"> 
-                            <ul class=list-group" id="searchList">
-                              <!--  <li class="list-group-item">Austin</li>
-                                <li class="list-group-item">Chicago</li>
-                                <li class="list-group-item">New York</li>
-                                <li class="list-group-item">Orlando</li>
-                                <li class="list-group-item">San Fransisco</li>
-                                <li class="list-group-item">Seattle</li>
-                                <li class="list-group-item">Denver</li>
-                                <li class="list-group-item">Atlanta</li> 
+                            <ul class=listGroup" id="searchList">
+                              <!--  <li class="listGroupItem">Austin</li>
+                                <li class="listGroupItem">Chicago</li>
+                                <li class="listGroupItem">New York</li>
+                                <li class="listGroupItem">Orlando</li>
+                                <li class="listGroupItem">San Fransisco</li>
+                                <li class="listGroupItem">Seattle</li>
+                                <li class="listGroupItem">Denver</li>
+                                <li class="listGroupItem">Atlanta</li> 
                                 Dynamically generate this list -->    
                             </ul>
                         </aside>
