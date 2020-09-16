@@ -1,12 +1,12 @@
 $(function () {
-    const numberOfDaysToForecast = 5;
+    const daysToForecast = 5;
     var searchHistoryArray = [];
     const apiKey = "6099ede7d24801fa3337c93df63323b6";
     const inputField = $("#searchInput");
     var selectedCity;
-    var todaysDate = moment().format("dddd Do MMMM YYYY");
+    var currentDate = moment().format("dddd Do MMMM YYYY");
     var inputSwitch;
-    var listCity;
+    var listedCity;
     
     
   
@@ -26,12 +26,12 @@ $(function () {
     location.reload();
   });
 
-  
   $(document).on("click", ".list-group-item", function () {
     inputSwitch = false;
-    listCity = $(this).text();
+    listedCity = $(this).text();
     showWeather();
   });
+
 
 
 
@@ -68,7 +68,7 @@ if (localStorage.getItem("Weather search history")) {
     if (inputSwitch) {
       selectedCity = inputField.val();
     } else {
-      selectedCity = listCity;
+      selectedCity = listedCity;
     }
 
     $("#header-row").empty();
@@ -97,15 +97,14 @@ if (localStorage.getItem("Weather search history")) {
         alert("not a valid city name");
       }
       $("#weatherData").empty();
-      cityNameAndDate = $("<h4>").text(response.name + " (" + todaysDate + ")");
-      currentIconEl = $("<img id='currentWeatherIcon'>").attr(
+      var selectedCityAndDate = $("<h4>").text(response.name + " (" + currentDate + ")");
+      var currentIconEl = $("<img id='currentWeatherIcon'>").attr(
         "src",
         "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png"
       );
       $("#headerRow").empty();
-      $("#headerRow").append(cityNameAndDate, currentIconEl);
+      $("#headerRow").append(selectedCityAndDate, currentIconEl);
 
-      
       currentTempEl = $("<p>").text(
         "Temperature: " + Math.round(response.main.temp) + " °F"
       );
@@ -121,11 +120,8 @@ if (localStorage.getItem("Weather search history")) {
         currentHumidityEl,
         currentWindEl
       );
-
       var latitude = response.coord.lat;
       var longitude = response.coord.lon;
-
-
       var currentUVQueryURL =
         "https://api.openweathermap.org/data/2.5/uvi?appid=" +
         apiKey +
@@ -140,30 +136,24 @@ if (localStorage.getItem("Weather search history")) {
       }).then(function (response) {
         $("#forecastTitle").text("5-day Forecast");
 
-        currentUVLabel = $("<span>").text("UV Index: ");
-        currentUVBadge = $("<span>").text(response.value);
+        uvLabel = $("<span>").text("UV Index: ");
+        uvBadge = $("<span>").text(response.value);
         console.log(response.value);
 
         if (response.value < 3) {
-
-          currentUVBadge.addClass("uv uv-low");
+          uvBadge.addClass("uv uv-low");
         } else if (response.value >= 3 && response.value < 6) {
-
-          currentUVBadge.addClass("uv uv-med");
+          uvBadge.addClass("uv uv-med");
         } else if (response.value >= 6 && response.value < 8) {
-
-          currentUVBadge.addClass("uv uv-high");
+          uvBadge.addClass("uv uv-high");
         } else if (response.value >= 8 && response.value <= 10) {
-
-          currentUVBadge.addClass("uv uv-very-high");
+          uvBadge.addClass("uv uv-very-high");
         } else {
-
-          currentUVBadge.addClass("uv uv-extreme");
+          uvBadge.addClass("uv uv-extreme");
         }
 
-        $("#weatherData").append(currentUVLabel, currentUVBadge);
+        $("#weatherData").append(uvLabel, uvBadge);
       });
-
 
       var forecastQueryURL =
         "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" +
@@ -179,19 +169,19 @@ if (localStorage.getItem("Weather search history")) {
       }).then(function (response) {
         
         $("#forecastRow").empty();
-        for (let i = 1; i < numberOfDaysToForecast + 1; i++) {
+        for (let i = 1; i < daysToForecast + 1; i++) {
           var forecastCard = $("<div class='col-sm-2 card forecast card-body'>");
             // console.log("test-1");
-          var forecastDayEl = $("<h6>");
+          var forecastDay = $("<h6>");
           var unixSeconds = response.daily[i].dt;
           var unixMilliseconds = unixSeconds * 1000;
           var forecastDateUnix = new Date(unixMilliseconds);
           var forecastDoW = forecastDateUnix.toLocaleString("en-US", {
             weekday: "long",
           });
-          forecastDayEl.text(forecastDoW);
+          forecastDay.text(forecastDoW);
           var hrLine = $("<hr />");
-          var iconPara = $("<p>");
+          var iconP = $("<p>");
           var iconImg = $("<img>");
           iconImg.attr(
             "src",
@@ -199,22 +189,19 @@ if (localStorage.getItem("Weather search history")) {
               response.daily[i].weather[0].icon +
               ".png"
           );
-          iconPara.append(iconImg);
-
-          var tempPara = $("<p>").text(
+          iconP.append(iconImg);
+          var tempP = $("<p>").text(
             "Temp: " + Math.round(response.daily[i].temp.day) + " °F"
           );
-
-
-          var humidPara = $("<p>").text(
+          var humidP = $("<p>").text(
             "Humidity: " + response.daily[i].humidity + "%"
           );
           forecastCard.append(
-            forecastDayEl,
+            forecastDay,
             hrLine,
-            iconPara,
-            tempPara,
-            humidPara
+            iconP,
+            tempP,
+            humidP
           );
           $("#forecastRow").append(forecastCard);
         }
