@@ -105,3 +105,8 @@ aside {
     color: white;
     float: left;
   }
+
+  .container{
+      margin: 15px;
+      
+  }

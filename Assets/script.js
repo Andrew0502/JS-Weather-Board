@@ -186,10 +186,10 @@ $(function () {
         $("#forecastRow").empty();
         for (let i = 1; i < numberOfDaysToForecast + 1; i++) {
           //create a card
-          var forecastCard = $("<div class='col-sm-3 card forecast card-body'>");
+          var forecastCard = $("<div class='col-sm-2 card forecast card-body'>");
             console.log("test-1");
           //title of card: day of the week
-          var forecastDayEl = $("<h5>");
+          var forecastDayEl = $("<h6>");
           //fetch unix timestamp and convert to day of the week
           var unixSeconds = response.daily[i].dt;
           var unixMilliseconds = unixSeconds * 1000;
