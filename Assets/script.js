@@ -96,19 +96,18 @@ $(function () {
           populateSearchBar();
         }
       } else {
-        //TODO: no alert appears, idk if possible
+        
         alert("not a valid city name");
       }
 
-      //If validation is ok, continue. ========================================
-
-      //Display header showing City, Date, and Icon
+      $("#weatherData").empty();
       cityNameAndDate = $("<h4>").text(response.name + " (" + todaysDate + ")");
       currentIconEl = $("<img id='currentWeatherIcon'>").attr(
         "src",
         "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png"
       );
-      $("#header-row").append(cityNameAndDate, currentIconEl);
+      $("#headerRow").empty();
+      $("#headerRow").append(cityNameAndDate, currentIconEl);
 
       //Display current weather data
       currentTempEl = $("<p>").text(
@@ -184,6 +183,7 @@ $(function () {
         method: "GET",
       }).then(function (response) {
         //Loop to create forecast cards. See HTML file for a reference of how this looks when built. (the loops tarts on index 1 because 0 is today I'm not trying to call today's weather)
+        $("#forecastRow").empty();
         for (let i = 1; i < numberOfDaysToForecast + 1; i++) {
           //create a card
           var forecastCard = $("<div class='card forecast card-body'>");
@@ -232,6 +232,7 @@ $(function () {
             tempPara,
             humidPara
           );
+          
           $("#forecastRow").append(forecastCard);
         }
       });
