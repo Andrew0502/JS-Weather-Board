@@ -35,7 +35,7 @@ aside {
     overflow: auto;
   }
   
-  .listGroupItem:hover {
+  .list-group-item:hover {
     /* color: red; */
     background-color: rgb(228, 230, 233);
     cursor: pointer;
