@@ -3,23 +3,16 @@ $(function () {
     var searchHistoryArray = [];
     const apiKey = "6099ede7d24801fa3337c93df63323b6";
     const inputField = $("#searchInput");
-    var cityName;
+    var selectedCity;
     var todaysDate = moment().format("dddd Do MMMM YYYY");
     var inputSwitch;
     var listCity;
     
-    if (localStorage.getItem("Weather search history")) {
-      var arrayFromStorage = localStorage
-        .getItem("Weather search history")
-        .split(",");
-    } else {
-      var arrayFromStorage;
-    }
+    
   
   $("#searchButton").on("click", function () {
     event.preventDefault();
     
-
     if (inputField.val() === "") {      
       return;
     } else {
@@ -27,8 +20,7 @@ $(function () {
       showWeather();
     }
   });
-
-  
+ 
   $("#clearButton").on("click", function () {
     localStorage.removeItem("Weather search history");
     location.reload();
@@ -40,6 +32,19 @@ $(function () {
     listCity = $(this).text();
     showWeather();
   });
+
+
+
+if (localStorage.getItem("Weather search history")) {
+      var arrayFromStorage = localStorage
+        .getItem("Weather search history")
+        .split(",");
+    } else {
+      var arrayFromStorage;
+    }
+
+
+
   
   function onLoad() {
     $("#searchList").empty();
@@ -56,14 +61,14 @@ $(function () {
   }
   onLoad();
 
+
   function showWeather() {
     event.preventDefault();
 
-   
     if (inputSwitch) {
-      cityName = inputField.val();
+      selectedCity = inputField.val();
     } else {
-      cityName = listCity;
+      selectedCity = listCity;
     }
 
     $("#header-row").empty();
@@ -72,20 +77,18 @@ $(function () {
 
     var currentWeatherQueryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-      cityName +
+      selectedCity +
       "&units=imperial&appid=" +
       apiKey;
-
-    
+ 
     $.ajax({
       url: currentWeatherQueryURL,
       method: "GET",
     }).then(function (response) {
-      cityName = response.name;
+        selectedCity = response.name;
 
-    
       if (response) {
-        if (searchHistoryArray.includes(cityName) === false) {
+        if (searchHistoryArray.includes(selectedCity) === false) {
 
           populateSearchBar();
         }
@@ -93,7 +96,6 @@ $(function () {
         
         alert("not a valid city name");
       }
-
       $("#weatherData").empty();
       cityNameAndDate = $("<h4>").text(response.name + " (" + todaysDate + ")");
       currentIconEl = $("<img id='currentWeatherIcon'>").attr(
@@ -179,10 +181,8 @@ $(function () {
         $("#forecastRow").empty();
         for (let i = 1; i < numberOfDaysToForecast + 1; i++) {
           var forecastCard = $("<div class='col-sm-2 card forecast card-body'>");
-            console.log("test-1");
-
+            // console.log("test-1");
           var forecastDayEl = $("<h6>");
-
           var unixSeconds = response.daily[i].dt;
           var unixMilliseconds = unixSeconds * 1000;
           var forecastDateUnix = new Date(unixMilliseconds);
@@ -190,13 +190,8 @@ $(function () {
             weekday: "long",
           });
           forecastDayEl.text(forecastDoW);
-
-
           var hrLine = $("<hr />");
-
-
           var iconPara = $("<p>");
-
           var iconImg = $("<img>");
           iconImg.attr(
             "src",
@@ -214,8 +209,6 @@ $(function () {
           var humidPara = $("<p>").text(
             "Humidity: " + response.daily[i].humidity + "%"
           );
-
-
           forecastCard.append(
             forecastDayEl,
             hrLine,
@@ -223,7 +216,6 @@ $(function () {
             tempPara,
             humidPara
           );
-          
           $("#forecastRow").append(forecastCard);
         }
       });
@@ -232,7 +224,7 @@ $(function () {
   function populateSearchBar() {
     $("#search-history-items").empty();
 
-    searchHistoryArray.push(cityName);
+    searchHistoryArray.push(selectedCity);
     console.log("searchHistoryArray: " + searchHistoryArray);
     localStorage.setItem("Weather search history", searchHistoryArray);
 
