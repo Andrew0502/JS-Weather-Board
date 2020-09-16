@@ -103,4 +103,5 @@ aside {
     border-radius: 5px;
     box-shadow: -1px 1px 12px 1px rgba(20, 69, 102, 1);
     color: white;
+    float: left;
   }

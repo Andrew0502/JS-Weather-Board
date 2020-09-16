@@ -4,7 +4,7 @@ $(function () {
     const apiKey = "6099ede7d24801fa3337c93df63323b6";
     const inputField = $("#searchInput");
     var cityName;
-    var todaysDate = moment().format("D MMMM YYYY");
+    var todaysDate = moment().format("dddd Do MMMM YYYY");
     var inputSwitch;
     var listCity;
     
@@ -186,7 +186,7 @@ $(function () {
         $("#forecastRow").empty();
         for (let i = 1; i < numberOfDaysToForecast + 1; i++) {
           //create a card
-          var forecastCard = $("<div class='card forecast card-body'>");
+          var forecastCard = $("<div class='col-sm-3 card forecast card-body'>");
             console.log("test-1");
           //title of card: day of the week
           var forecastDayEl = $("<h5>");
