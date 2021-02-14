@@ -7,7 +7,7 @@ This app is designed to help someone track the weather in various cities. It get
 
 [Here is a link to the working page!](https://andrew0502.github.io/weather-board/)
 
-![Image of the calender with the time set to 1pm.](./../Assets\dashboard_screenshot.PNG)
+![Image of the calender with the time set to 1pm.](./Assets\dashboard_screenshot.PNG)
 
 
 
